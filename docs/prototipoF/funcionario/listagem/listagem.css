@@ -1,0 +1,110 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+a{
+    text-decoration: none;
+    color: inherit;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #4A5568;
+    color: #fff;
+}
+
+.container {
+    display: flex;
+    height: 100vh;
+}
+
+.sidebar {
+    background-color: #2D3748;
+    padding: 20px;
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    border-radius: 10px;
+    margin: 10px 0 10px 10px;
+}
+
+.menu-btn {
+    background-color: #1A202C;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    text-align: left;
+    transition: background-color 0.3s;
+}
+
+.menu-btn:hover {
+    background-color: #4A5568;
+}
+
+.main-content {
+    flex-grow: 1;
+    padding: 20px;
+    background-color: #2D3748;
+    margin: 10px 10px 10px 15px;
+    border-radius: 10px;
+}
+
+h1 {
+    background-color: #E2E8F0;
+    color: #2D3748;
+    text-align: center;
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.employee-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.employee-item {
+    display: flex;
+    align-items: center;
+    background-color: #1A202C;
+    border-radius: 10px;
+    padding: 10px;
+    gap: 10px;
+}
+
+.employee-item input {
+    flex-grow: 1;
+    background-color: #4A5568;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.employee-item input:disabled {
+    cursor: not-allowed;
+}
+
+.edit-btn, .delete-btn {
+    background: none;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    font-size: 18px;
+    transition: color 0.3s;
+}
+
+.edit-btn:hover {
+    color: #63B3ED;
+}
+
+.delete-btn:hover {
+    color: #F56565;
+}
