@@ -1,6 +1,5 @@
 // Use DBML to define your database structure
 // Docs: https://dbml.dbdiagram.io/docs
-// View: https://dbdiagram.io/d
 Project Barbearia {
   database_type: 'PostgreSQL'
   note: '''
@@ -61,6 +60,7 @@ enum status_funcionario{
 Table Funcionario {
     id integer pk
     nome varchar [not null, unique]
+    barbeariaId int [not null, ref: > Barbearia.id]
     cargoId integger [not null, ref: > Cargo.id]
     descricao varchar
     status status_funcionario [not null]
@@ -84,7 +84,7 @@ Table Agendamento {
   id int pk
   dataAgendamento datetime
   dataCriacao datetime
-  funcinarioId int [null, ref: > Funcionario.id, note: 'funcionario que realizou o agendamento']
+  funcionarioId int [null, ref: > Funcionario.id, note: 'funcionario que realizou o agendamento']
   clienteId int [not null, ref: > Cliente.id]
 
 }
