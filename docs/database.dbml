@@ -1,0 +1,134 @@
+// Use DBML to define your database structure
+// Docs: https://dbml.dbdiagram.io/docs
+Project Barbearia {
+  database_type: 'PostgreSQL'
+  note: '''
+    # Sugestão de banco de dados do sistema de barbearia
+  '''
+}
+Table Barbearia{
+  id integer pk
+  nome varchar [not null, unique]
+  endereco varchar [not null]
+}
+
+Table Cliente {
+  id integer pk
+  nome varchar [not null]
+  email varchar [not null, unique]
+  telefone  varchar
+  barbeariaFavorita int [ref: > Barbearia.id]
+}
+
+
+enum status_procedimento {
+  ativo
+  suspenso
+  desativado
+}
+
+Table Procedimento{
+  id integer pk
+  nome varchar [not null, unique]
+  descricao varchar
+}
+
+Table ProcedimentoBarbearia {
+  id int pk
+  procedimentoId int [not null, ref: > Procedimento.id]
+  barbeariaId int [not null, ref: > Barbearia.id]
+  comissao double [not null, note: 'valor da comissão da barbearia para a execução do procedimento']
+  status status_procedimento
+  indexes {
+    (procedimentoId, barbeariaId) [unique]
+  }
+}
+
+
+Table Cargo{
+  id integer pk
+  nome varchar [not null, unique]
+}
+
+enum status_funcionario{
+  ativo
+  ferias
+  afastado
+  inativo
+}
+
+Table Funcionario {
+    id integer pk
+    nome varchar [not null, unique]
+    barbeariaId int [not null, ref: > Barbearia.id]
+    cargoId integger [not null, ref: > Cargo.id]
+    descricao varchar
+    status status_funcionario [not null]
+}
+
+Table ProcedimentoFuncionario {
+  id int pk
+  procedimentoId int [not null, ref: > Procedimento.id]
+  funcionarioId int [not null, ref: > Funcionario.id]
+  barbeariaId int [not null, ref: > Barbearia.id]
+  valor double [not null]
+  duracao int [not null, note: 'tempo para executar o procedimento']
+  status status_procedimento
+  indexes {
+    (procedimentoId, funcionarioId, barbeariaId) [unique]
+  }
+
+}
+
+Table Agendamento {
+  id int pk
+  dataAgendamento datetime
+  dataCriacao datetime
+  funcionarioId int [null, ref: > Funcionario.id, note: 'funcionario que realizou o agendamento']
+  clienteId int [not null, ref: > Cliente.id]
+
+}
+
+Table AgendamentoItem {
+  id int pk
+  agendamentoId int [not null, ref: > Agendamento.id]
+  procedimentoProfissionalId int [not null, ref: > ProcedimentoFuncionario.id]
+
+  indexes {
+    (agendamentoId, procedimentoProfissionalId) [unique]
+  }
+} 
+
+Enum formas_pagamento {
+  Dinheiro
+  Pix
+  Debito
+  Credito
+  Voucher
+}
+Enum status_compra{
+  Cancelada
+  Finalizada
+  Aberta
+}
+
+Table Compra {
+  id int pk
+  clienteId int [not null, ref: > Cliente.id]
+  agendamentoId int [null, ref: > Agendamento.id, note: 'Uma compra pode ter sido previamente agendada ou não']
+  dataCriacao datetime
+  funcinarioId int [not null, ref: > Funcionario.id]
+  formaPagamento formas_pagamento
+  status status_compra
+
+}
+
+Table CompraItem {
+  id int pk
+  compraId int [not null, ref: > Compra.id]
+  agendamentoItemId int [null, ref: > AgendamentoItem.id, note: 'Uma item de compra pode ter sido previamente agendada ou não']
+  procedimentoProfissionalId int [not null, ref: > ProcedimentoFuncionario.id]
+  quantidade int 
+  valorUnitario int 
+  valorTotalPago double 
+} 

@@ -8,7 +8,7 @@ Para tanto, será necessária a implementação dos [módulos](#módulos) com vi
 
 # Módulos
 
-- [*Clientes*](clientes.md): Um módulo para registrar os dados como nome, e-mail e telefone de um clientes.
+- [*Clientes*](ModuloClientes.md): Um módulo para registrar os dados como nome, e-mail e telefone de um clientes.
 
 - *[Funcionários](ModuloFuncionarios.md)*: Módulo para gerenciar os funcionários.
 
