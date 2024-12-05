@@ -1,5 +1,6 @@
 // Use DBML to define your database structure
 // Docs: https://dbml.dbdiagram.io/docs
+// View: https://dbdiagram.io/d
 Project Barbearia {
   database_type: 'PostgreSQL'
   note: '''
@@ -93,7 +94,7 @@ Table AgendamentoItem {
   agendamentoId int [not null, ref: > Agendamento.id]
   procedimentoProfissionalId int [not null, ref: > ProcedimentoFuncionario.id]
 
-  indexes{
+  indexes {
     (agendamentoId, procedimentoProfissionalId) [unique]
   }
 } 
