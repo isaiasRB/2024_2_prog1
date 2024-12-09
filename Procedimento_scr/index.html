@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciamento de Procedimentos</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Gerenciamento de Procedimentos</h1>
+    </header>
+    <main>
+        <section class="procedures-list">
+            <h2>Procedimentos Cadastrados</h2>
+            <button class="add-procedure-btn">Adicionar Procedimento</button>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Percentual</th>
+                        <th>Status</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Exemplo de Procedimento -->
+                    <tr>
+                        <td>Corte de Cabelo</td>
+                        <td>50%</td>
+                        <td>Ativo</td>
+                        <td>
+                            <button class="view-btn">Visualizar</button>
+                            <button class="edit-btn">Editar</button>
+                            <button class="delete-btn">Excluir</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        <section class="form-section hidden">
+            <h2 id="form-title">Adicionar Procedimento</h2>
+            <form id="procedure-form">
+                <label for="procedure-name">Nome do Procedimento:</label>
+                <input type="text" id="procedure-name" required>
+                
+                <label for="procedure-percent">Percentual de Cobrança (%):</label>
+                <input type="number" id="procedure-percent" min="0" max="100" required>
+                
+                <label for="procedure-description">Descrição:</label>
+                <textarea id="procedure-description" required></textarea>
+                
+                <label for="procedure-status">Status:</label>
+                <select id="procedure-status" required>
+                    <option value="ativo">Ativo</option>
+                    <option value="suspenso">Suspenso</option>
+                    <option value="inativo">Inativo</option>
+                </select>
+                
+                <button type="submit">Salvar</button>
+                <button type="button" id="cancel-btn">Cancelar</button>
+            </form>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 Barbearia</p>
+    </footer>
+    <script src="scripts.js"></script>
+</body>
+</html>
